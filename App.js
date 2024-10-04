@@ -1,20 +1,17 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { ThemeProvider } from "styled-components/native";
+
+import { theme } from "./src/theme";
+// Importing screens
+import RestaurantsScreen from "./src/screens/Restaurants";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello React Native</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ExpoStatusBar style="auto" />
+      <ThemeProvider theme={theme}>
+        <RestaurantsScreen />
+      </ThemeProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
