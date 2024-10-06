@@ -11,6 +11,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { theme } from "./src/theme";
+
 // Importing screens
 import RestaurantsScreen from "./src/screens/Restaurants";
 
@@ -18,6 +19,7 @@ const Tab = createBottomTabNavigator();
 
 import { Text } from "react-native";
 import { SafeArea } from "./src/components/utility/Safe-Area";
+import { RestaurantsContextProvider } from "./src/services/restaurant/restaurant-context";
 
 const TAB_ICON = {
   // Route name : icon name,
@@ -72,13 +74,15 @@ export default function App() {
     <>
       <ExpoStatusBar style="auto" />
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={createScreenOption}>
-            <Tab.Screen name="Resturants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={createScreenOption}>
+              <Tab.Screen name="Resturants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
       </ThemeProvider>
     </>
   );
