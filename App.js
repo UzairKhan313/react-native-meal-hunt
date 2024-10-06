@@ -20,6 +20,7 @@ const Tab = createBottomTabNavigator();
 import { Text } from "react-native";
 import { SafeArea } from "./src/components/utility/Safe-Area";
 import { RestaurantsContextProvider } from "./src/services/restaurant/restaurant-context";
+import { LocationContextProvider } from "./src/services/location/location-context";
 
 const TAB_ICON = {
   // Route name : icon name,
@@ -74,15 +75,17 @@ export default function App() {
     <>
       <ExpoStatusBar style="auto" />
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOption}>
-              <Tab.Screen name="Resturants" component={RestaurantsScreen} />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator screenOptions={createScreenOption}>
+                <Tab.Screen name="Resturants" component={RestaurantsScreen} />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
     </>
   );

@@ -8,11 +8,8 @@ import RestaurantCard from "../components/restaurants/Restaurant-Card";
 import { Spacer } from "../components/spacer/space";
 import { SafeArea } from "../components/utility/Safe-Area";
 import { useRestaurantContext } from "../services/restaurant/restaurant-context";
-import { isLoaded } from "expo-font";
 
-const SearchContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import Search from "../components/restaurants/Search";
 
 const LoadingSpinner = styled(View)`
   position: absolute;
@@ -25,17 +22,16 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 const RestaurantsScreen = () => {
-  const { restaurants } = useRestaurantContext();
+  const { restaurants, isLoading } = useRestaurantContext();
+
   return (
     <SafeArea>
-      {isLoaded && (
+      {isLoading && (
         <LoadingSpinner>
           <Loading size={50} animating={true} color={MD2Colors.red400} />
         </LoadingSpinner>
       )}
-      <SearchContainer>
-        <Searchbar placeholder="Search Restaurant" />
-      </SearchContainer>
+      <Search />
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
