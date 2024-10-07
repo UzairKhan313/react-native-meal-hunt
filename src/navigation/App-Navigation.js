@@ -5,9 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+import { SafeArea } from "../components/utility/Safe-Area";
+
 // Importing screens
 import RestaurantNavigator from "./Restaurant-Navigation";
-import { SafeArea } from "../components/utility/Safe-Area";
+import MapScreen from "../screens/Map";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,13 +32,6 @@ const createScreenOption = ({ route }) => {
   };
 };
 
-const MapScreen = () => {
-  return (
-    <SafeArea>
-      <Text>Map</Text>
-    </SafeArea>
-  );
-};
 const SettingsScreen = () => {
   return (
     <SafeArea>
