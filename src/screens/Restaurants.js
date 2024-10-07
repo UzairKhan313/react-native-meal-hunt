@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
@@ -10,6 +10,8 @@ import { SafeArea } from "../components/utility/Safe-Area";
 import { useRestaurantContext } from "../services/restaurant/restaurant-context";
 
 import Search from "../components/restaurants/Search";
+import { useFavouritesContext } from "../services/favourites/Favourites-Context";
+import FavouritesBar from "../components/favourite/Favourites-Bar";
 
 const LoadingSpinner = styled(View)`
   position: absolute;
@@ -23,6 +25,8 @@ const Loading = styled(ActivityIndicator)`
 
 const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useRestaurantContext();
+  const [isToggle, setIsToggle] = useState(false);
+  const { favourites } = useFavouritesContext();
 
   return (
     <SafeArea>
@@ -31,7 +35,16 @@ const RestaurantsScreen = ({ navigation }) => {
           <Loading size={50} animating={true} color={MD2Colors.red400} />
         </LoadingSpinner>
       )}
-      <Search />
+      <Search
+        isFavouritesToggle={isToggle}
+        onFavouritesToggle={() => setIsToggle(!isToggle)}
+      />
+      {isToggle && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {

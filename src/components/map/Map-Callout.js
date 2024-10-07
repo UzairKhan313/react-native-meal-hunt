@@ -8,7 +8,7 @@ const MapCallout = ({ restaurant, navigation }) => {
     <Callout
       onPress={() => navigation.navigate("ResturantDetails", { restaurant })}
     >
-      <CompactRestaurantinfo restaurant={restaurant} />
+      <CompactRestaurantinfo restaurant={restaurant} isMap={true} />
     </Callout>
   );
 };
