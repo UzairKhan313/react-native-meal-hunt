@@ -1,5 +1,9 @@
-import app from "../../app/firebase";
+import { auth } from "../../app/firebase-two";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 export const loginRequest = (email, password) => {
-  app.auth().signInWithEmailAndPassword(email, password);
+  return signInWithEmailAndPassword(auth, email, password);
 };

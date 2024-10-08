@@ -11,17 +11,23 @@ export const AuthContextProvider = ({ children }) => {
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
-      .then((u) => {
-        setUser(u);
+      .then((result) => {
+        console.log(result.user);
+        // setUser();
         setIsLoading(false);
       })
       .catch((err) => {
         setIsLoading(false);
-        setError(err);
+
+        console.log(err);
+        console.log(err.message);
+        setError(err.message);
       });
   };
   return (
-    <AuthContext.Provider value={{ user, isLoading, error, onLogin }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated: !!user, user, isLoading, error, onLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );
