@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Button, Text } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,6 +10,7 @@ import { SafeArea } from "../components/utility/Safe-Area";
 // Importing screens
 import RestaurantNavigator from "./Restaurant-Navigation";
 import MapScreen from "../screens/Map";
+import { useAuthContext } from "../services/auth/Auth-Context";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,9 +34,11 @@ const createScreenOption = ({ route }) => {
 };
 
 const SettingsScreen = () => {
+  const { onLogout } = useAuthContext();
   return (
     <SafeArea>
-      <Text>Map</Text>
+      <Text>Setting Screen</Text>
+      <Button title="logout" onPress={() => onLogout()} />
     </SafeArea>
   );
 };
