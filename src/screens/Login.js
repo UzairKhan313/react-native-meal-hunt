@@ -9,11 +9,12 @@ import AccountBackground, {
 } from "../components/utility/Account-Background-style";
 import { Spacer } from "../components/spacer/space";
 import { useAuthContext } from "../services/auth/Auth-Context";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error } = useAuthContext();
+  const { onLogin, isLoading, error } = useAuthContext();
   return (
     <AccountBackground>
       <AccountCover />
@@ -34,7 +35,6 @@ const LoginScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            secure
             onChangeText={(p) => setPassword(p)}
           />
         </Spacer>
@@ -44,13 +44,17 @@ const LoginScreen = ({ navigation }) => {
           </Spacer>
         )}
         <Spacer position="top" size="large">
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={() => onLogin(email, password)}
-          >
-            Login
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => onLogin(email, password)}
+            >
+              Login
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animate={true} color={MD2Colors.red400} />
+          )}
         </Spacer>
       </AccountContainer>
       <Spacer position="top" size="large">
