@@ -47,4 +47,10 @@ export const ErrorContainer = styled.View`
   margin-bottom: ${(props) => props.theme.space[2]};
 `;
 
+export const AnimationWrapper = styled(View)`
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
+`;
 export default AccountBackground;
