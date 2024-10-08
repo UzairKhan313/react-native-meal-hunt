@@ -9,10 +9,7 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { theme } from "./src/theme";
 import Naivgation from "./src/navigation";
-import { RestaurantsContextProvider } from "./src/services/restaurant/restaurant-context";
-import { LocationContextProvider } from "./src/services/location/location-context";
 import { AuthContextProvider } from "./src/services/auth/Auth-Context";
-import FavouritesProvider from "./src/services/favourites/Favourites-Context";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -36,13 +33,7 @@ export default function App() {
       <ExpoStatusBar style="auto" />
       <AuthContextProvider>
         <ThemeProvider theme={theme}>
-          <FavouritesProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Naivgation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesProvider>
+          <Naivgation />
         </ThemeProvider>
       </AuthContextProvider>
     </>

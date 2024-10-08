@@ -8,7 +8,7 @@ const AuthContext = createContext({});
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -16,6 +16,7 @@ export const AuthContextProvider = ({ children }) => {
       .then((result) => {
         setUser(result.user);
         setIsLoading(false);
+        setError(null);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -34,6 +35,7 @@ export const AuthContextProvider = ({ children }) => {
       .then((result) => {
         setUser(result.user);
         setIsLoading(false);
+        setError(null);
       })
       .catch((err) => {
         setError(err.message);
@@ -54,6 +56,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser); // Automatically manages user state
       setIsLoading(false);
+      setError(null);
     });
 
     return () => unsubscribe(); // Cleanup subscription on unmount
