@@ -12,6 +12,7 @@ import { useRestaurantContext } from "../services/restaurant/restaurant-context"
 import Search from "../components/restaurants/Search";
 import { useFavouritesContext } from "../services/favourites/Favourites-Context";
 import FavouritesBar from "../components/favourite/Favourites-Bar";
+import FadeInView from "../components/Animations/Fade-Animation";
 
 const LoadingSpinner = styled(View)`
   position: absolute;
@@ -55,7 +56,9 @@ const RestaurantsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );

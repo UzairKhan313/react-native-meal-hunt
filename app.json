@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Meal Hunt",
+    "slug": "Meal-hunt",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon@2x.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    }
+  }
+}
