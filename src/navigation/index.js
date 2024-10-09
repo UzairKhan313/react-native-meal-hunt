@@ -6,7 +6,7 @@ import { useAuthContext } from "../services/auth/Auth-Context";
 import AccountNavigation from "./Account-Navigation";
 
 const Naivgation = () => {
-  const { user, isAuthenticated } = useAuthContext();
+  const { isAuthenticated } = useAuthContext();
   return (
     <NavigationContainer>
       {isAuthenticated ? <AppNavigator /> : <AccountNavigation />}

@@ -51,16 +51,11 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {}
   };
 
-  // Check user authentication state
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Automatically manages user state
-      setIsLoading(false);
-      setError(null);
-    });
-
-    return () => unsubscribe(); // Cleanup subscription on unmount
-  }, [user]);
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser); // Automatically manages user state
+    setIsLoading(false);
+    setError(null);
+  });
 
   return (
     <AuthContext.Provider
